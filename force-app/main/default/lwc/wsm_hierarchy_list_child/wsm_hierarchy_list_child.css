@@ -1,0 +1,73 @@
+.card-outer {
+    background: #eee;
+}
+
+.hierarchy-card {
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.25rem;
+}
+
+.card-header:hover {
+    background-color: #f3f3f3;
+}
+
+.expand-button {
+    margin-right: 0.5rem;
+}
+
+.field-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    flex: 1;
+}
+
+.field-item {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.field-label {
+    font-weight: bold;
+    color: #706e6b;
+}
+
+.field-value {
+    color: #181818;
+}
+
+.children-container {
+    border-left: 2px solid #dddbda;
+    margin-left: 1rem;
+}
+
+.level-0 .children-container { 
+    border-left-color: #0176d3; 
+}
+
+.level-1 .children-container { 
+    border-left-color: #06a59a; 
+}
+
+.level-2 .children-container { 
+    border-left-color: #e16032; 
+}
+
+.level-3 .children-container { 
+    border-left-color: #8b61c1; 
+}
+
+.level-4 .children-container { 
+    border-left-color: #f2cf5b; 
+}
+/*---------- Children ----------*/
+c-wsm_hierarchy_list_child {
+    display: flex;
+}

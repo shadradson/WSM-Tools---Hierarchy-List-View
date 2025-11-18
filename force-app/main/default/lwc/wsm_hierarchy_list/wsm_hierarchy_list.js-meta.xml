@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+     <masterLabel>WSM Hierarchy Lists</masterLabel>
+    <description>View Hierarchy Lists of any self referential objects.</description>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__FlowScreen</target>
+        <target>lightningCommunity__Page</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <propertyType name='SO' extends='SObject' label='Select a Object' description='Select a Object to put a record collection of records from the flow that need to show in a hierarchy'/>
+            <property name="incRecordCollection" type="{SO[]}" label="Record Collection" required="true" description="Collection of records to display in hierarchy"/>
+            <property name="incObjectAPIName" type="String" label="Selected Object API Name" required="true" description="The API name of the object selected."/>
+            <property name="relationshipField" type="String" label="Relationship Field API Name" required="true" description="Field that defines parent-child relationship (e.g., ParentId)"/>
+            <property name="titleField" type="String" label="Title Field API Name" required="true" description="Field that defines the name of a record"/>
+            <property name="subTitleField" type="String" label="Subtitle Field API Name" required="true" description="Field that defines the subtitle of a record. If blank, subtitle will be hidden."/>
+            <property name="fieldsToDisplay" type="String" label="Other Fields to Display" required="true" description="Comma-separated field API names (e.g., Name,Phone,Email)"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

@@ -1,0 +1,18 @@
+<template>
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading"></lightning-spinner>
+    </template>
+
+    <template if:true={error}>
+        <div class="slds-text-color_error slds-p-around_medium">{error}</div>
+    </template>
+
+    <template if:false={isLoading}>
+        <div class="hierarchy-container">
+            <template for:each={hierarchyData} for:item="record">
+                <c-wsm_hierarchy_list_child key={record.Id} inc-record={record} inc-settings={settings}>
+                </c-wsm_hierarchy_list_child>
+            </template>
+        </div>
+    </template>
+</template>
