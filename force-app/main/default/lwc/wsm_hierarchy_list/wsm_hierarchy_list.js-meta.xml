@@ -17,6 +17,7 @@
             <property name="titleField" type="String" label="Title Field API Name" required="true" description="Field that defines the name of a record"/>
             <property name="subTitleField" type="String" label="Subtitle Field API Name" required="true" description="Field that defines the subtitle of a record. If blank, subtitle will be hidden."/>
             <property name="fieldsToDisplay" type="String" label="Other Fields to Display" required="true" description="Comma-separated field API names (e.g., Name,Phone,Email)"/>
+            <property name="settingsJSON" type="String" label="Other Settings JSON" description="This is where other settings can be placed in. Look in the Github documentation for more info."/>
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

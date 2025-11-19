@@ -1,31 +1,38 @@
 <template>
-    <div class="card-outer" role="treeitem" aria-label={ariaLabel} aria-expanded={ariaExpanded} tabindex="0" onkeydown={handleKeyDown}>
+    <div class="card-outer" data-recordcolor={recordColorBasedOnField} role="treeitem" aria-label={ariaLabel} aria-expanded={ariaExpanded} tabindex="0" onkeydown={handleKeyDown}>
 
-            <div class="card-header" onclick={handleRecordClick} role="button" aria-label="View record details">
+        <div class="card-header" onclick={handleRecordClick} role="button" aria-label="View record details">
 
-                <template if:true={hasChildren}>
-                    <lightning-button-icon icon-name={expandIcon} onclick={handleToggleExpand} alternative-text={toggleButtonLabel} title={toggleButtonLabel} class="expand-button">
-                    </lightning-button-icon>
-                </template>
-
-                <div class="field-container">
-                    <lightning-record-view-form object-api-name={incSettings.objectApiName} record-id={incRecord.Id}>
-                        <template for:each={displayFields} for:item="field">
-                            <div key={field} class="field-item">
-                                <lightning-output-field field-name={field}> </lightning-output-field>
-                            </div>
-                        </template>
-                    </lightning-record-view-form>
+            <div class="field-container">
+                <div class="title-container">
+                    <div class="title">{title}</div>
+                    <div lwc:if={incSettings.hasSubtitle} class="sub-title">{subTitle}</div>
                 </div>
+                <lightning-record-view-form object-api-name={incSettings.objectApiName} record-id={incRecord.Id}>
+                    <template for:each={otherFieldsCompiled} for:item="field">
+                        <div data-fieldcolor={field.datacolor} key={field.fieldAPIName} class="field-item">
+                            <lightning-output-field variant={field.variant} field-name={field.fieldAPIName} value={field.value}> </lightning-output-field>
+                        </div>
+                    </template>
+                </lightning-record-view-form>
             </div>
+
+            <div lwc:if={hasChildren} class="dropbutton">
+                <lightning-button-icon icon-name={expandIcon} size="x-small" onclick={handleToggleExpand} alternative-text={toggleButtonLabel} title={toggleButtonLabel} class="expand-button">
+                </lightning-button-icon>
+            </div>
+        </div>
+
 
         <template if:true={isExpanded}>
             <template if:true={hasChildren}>
-                <div class="children-container" role="group">
-                    <template for:each={incRecord.children} for:item="child">
-                        <c-wsm_hierarchy_list_child key={child.Id} inc-record={child} inc-settings={childSettings}>
-                        </c-wsm_hierarchy_list_child>
-                    </template>
+                <div class="children-container-outer">
+                    <div class="children-container" role="group">
+                        <template for:each={incRecord.children} for:item="child">
+                            <c-wsm_hierarchy_list_child key={child.Id} inc-record={child} inc-settings={childSettings}>
+                            </c-wsm_hierarchy_list_child>
+                        </template>
+                    </div>
                 </div>
             </template>
         </template>

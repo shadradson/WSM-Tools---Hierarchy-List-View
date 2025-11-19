@@ -1,4 +1,5 @@
 .card-outer {
+    border-radius: 0.5rem;
     background: #eee;
 }
 
@@ -11,11 +12,14 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    padding: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    gap: 1rem;
+    border-radius: 0.5rem;
+    transition: 0.2s;
 }
 
 .card-header:hover {
-    background-color: #f3f3f3;
+    background-color: #ffffffaa;
 }
 
 .expand-button {
@@ -32,6 +36,8 @@
 .field-item {
     display: flex;
     gap: 0.25rem;
+    padding: 0.1rem 1rem;
+    border-radius: 1rem;
 }
 
 .field-label {
@@ -43,31 +49,29 @@
     color: #181818;
 }
 
-.children-container {
-    border-left: 2px solid #dddbda;
-    margin-left: 1rem;
+/*---------- Field Classes ----------*/
+.title {
+    font-size: 0.85rem;
+    font-weight: 700;
 }
-
-.level-0 .children-container { 
-    border-left-color: #0176d3; 
-}
-
-.level-1 .children-container { 
-    border-left-color: #06a59a; 
-}
-
-.level-2 .children-container { 
-    border-left-color: #e16032; 
-}
-
-.level-3 .children-container { 
-    border-left-color: #8b61c1; 
-}
-
-.level-4 .children-container { 
-    border-left-color: #f2cf5b; 
+.sub-title {
+    font-size: 11px;
+    font-weight: 300;
 }
 /*---------- Children ----------*/
-c-wsm_hierarchy_list_child {
+.children-container-outer {
+    padding: 0.5rem;
+}
+.children-container {
+    border-radius: 1rem;
+    background-color: #fff;
+    padding: 0.5rem;
     display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+c-wsm_hierarchy_list_child {
+    flex-grow: 1;
+    flex-basis: 0;
 }

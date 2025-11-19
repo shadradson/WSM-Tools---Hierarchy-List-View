@@ -1,10 +1,14 @@
 import { LightningElement, api } from 'lwc';
+import { testsettings } from './othersettings';
 
 export default class Wsm_hierarchy_list extends LightningElement {
     @api incRecordCollection;
     @api relationshipField;
     @api fieldsToDisplay;
     @api incObjectAPIName;
+    @api titleField;
+    @api subTitleField;
+    @api settingsJSON;
 
     hierarchyData = [];
     settings = {};
@@ -12,10 +16,35 @@ export default class Wsm_hierarchy_list extends LightningElement {
 
     connectedCallback() {
         try {
+            this.settingsJSON = testsettings();
             this.buildHierarchy();
+            this.initSettings();
         } catch (e) {
             this.error = `Error building hierarchy: ${e.message}`;
         }
+    }
+
+    initSettings() {
+        // Create settings object
+        // check that subtitle was added.
+        const hasSubtitle = this.subTitleField && this.subTitleField !== '';
+        
+        this.settings = {
+            objectApiName: this.incObjectAPIName,
+            titleField: this.titleField,
+            hasSubtitle: hasSubtitle,
+            subTitleField: this.subTitleField,
+            otherFields: this.fieldsToDisplay.split(',').map(field => field.trim()),
+            indentLevel: 0,
+            canExpand: true,
+            relationshipField: this.relationshipField,
+            hasOtherSettings: false
+        };
+        if (this.settingsJSON && this.settingsJSON !== '') {
+            this.settings.otherSettings = JSON.parse(this.settingsJSON);
+            this.settings.hasOtherSettings = true;
+        }
+        console.log('Seetings Parsed: ',JSON.stringify(this.settings));
     }
 
     buildHierarchy() {
@@ -23,29 +52,14 @@ export default class Wsm_hierarchy_list extends LightningElement {
             this.error = 'No records provided';
             return;
         }
-
         if (!this.relationshipField) {
             this.error = 'Relationship field is required';
             return;
         }
-
         if (!this.fieldsToDisplay) {
             this.error = 'Fields to display are required';
             return;
         }
-
-        // Parse fields to display
-        const fields = this.fieldsToDisplay.split(',').map(field => field.trim());
-        
-        // Create settings object
-        this.settings = {
-            objectApiName: this.incObjectAPIName,
-            fields: fields,
-            indentLevel: 0,
-            canExpand: true,
-            recordIdField: 'Id',
-            relationshipField: this.relationshipField
-        };
 
         // Build hierarchy using two-pass algorithm
         const recordMap = new Map();
