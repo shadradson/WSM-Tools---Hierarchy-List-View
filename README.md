@@ -4,6 +4,12 @@
 
 The WSM Hierarchy List is a pair of Lightning Web Components that display Salesforce records in a hierarchical tree structure with customizable field display and styling options.
 
+## Quick Deploy
+
+
+[<img src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png" alt="Deploy to Salesforce">](https://githubsfdeploy.herokuapp.com?owner=shadradson&repo=WSM-Tools---Hierarchy-List-View&ref=main)
+
+
 ## Components
 
 ### 1. wsm_hierarchy_list (Parent Component)
