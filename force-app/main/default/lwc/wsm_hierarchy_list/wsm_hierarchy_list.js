@@ -1,5 +1,4 @@
 import { LightningElement, api } from 'lwc';
-import { testsettings } from './othersettings';
 
 export default class Wsm_hierarchy_list extends LightningElement {
     @api incRecordCollection;
@@ -16,7 +15,9 @@ export default class Wsm_hierarchy_list extends LightningElement {
 
     connectedCallback() {
         try {
-            this.settingsJSON = testsettings();
+            //let parseTest = JSON.parse(this.settingsJSON);
+            //console.log('Parsing JSON: ',JSON.stringify(parseTest));
+            console.log('Settings JSON: ',this.settingsJSON);
             this.buildHierarchy();
             this.initSettings();
         } catch (e) {

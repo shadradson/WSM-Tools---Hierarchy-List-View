@@ -55,7 +55,7 @@ The `settingsJSON` parameter accepts a JSON string with advanced configuration o
 
 ### Structure
 
-```json
+```json string. This is best made as a text template in the flow. Make sure it is plain text.
 {
   "hasColoredFields": false,
   "hasColoredRecords": true,

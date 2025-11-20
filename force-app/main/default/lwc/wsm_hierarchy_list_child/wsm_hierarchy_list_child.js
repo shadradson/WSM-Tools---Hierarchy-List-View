@@ -10,6 +10,8 @@ export default class Wsm_hierarchy_list_child extends NavigationMixin(LightningE
     title = '';
     subTitle = '';
     otherFieldsCompiled = [];
+    isRecordColorBasedOnField = false;
+    isFieldColorBasedOnField = false;
     recordColorBasedOnField = null;
 
     connectedCallback() {
@@ -51,9 +53,11 @@ export default class Wsm_hierarchy_list_child extends NavigationMixin(LightningE
                         // check the value mode
                         if (singleFieldSetting.mode == 'fieldColor') {
                             fieldCompiled.datacolor = valueMatch.color;
+                            this.isFieldColorBasedOnField = true;
                         }
                         if (singleFieldSetting.mode == 'recordColor') {
                             this.recordColorBasedOnField = valueMatch.color;
+                            this.isRecordColorBasedOnField = true;
                         }
                     }
                 }
@@ -69,8 +73,8 @@ export default class Wsm_hierarchy_list_child extends NavigationMixin(LightningE
     }
 
     renderedCallback() {
-        if (this.incSettings.otherSettings.hasColoredFields) { this.fieldColors(); };
-        if (this.incSettings.otherSettings.hasColoredRecords) { this.recordColors(); };
+        if (this.incSettings.otherSettings.hasColoredFields && this.isFieldColorBasedOnField) { this.fieldColors(); };
+        if (this.incSettings.otherSettings.hasColoredRecords && this.isRecordColorBasedOnField) { this.recordColors(); };
     }
 
     fieldColors() {
