@@ -13,6 +13,9 @@ export default class Wsm_hierarchy_list extends LightningElement {
     settings = {};
     error;
 
+    paddingType = 'comfy';
+    isDarkMode = false;
+
     connectedCallback() {
         try {
             //let parseTest = JSON.parse(this.settingsJSON);
@@ -22,6 +25,25 @@ export default class Wsm_hierarchy_list extends LightningElement {
             this.initSettings();
         } catch (e) {
             this.error = `Error building hierarchy: ${e.message}`;
+        }
+    }
+
+    renderedCallback() {
+        this.darkModeAndPaddingApply();
+    }
+
+    darkModeAndPaddingApply() {
+        let darkMode = this.template.querySelectorAll('[data-darkmode]');
+        let paddingType = this.template.querySelectorAll('[data-paddingtype]');
+        if (darkMode && this.settings.otherSettings.darkMode) {
+            darkMode.forEach(element => {
+                element.classList.add('darkmode');
+            });
+        }
+        if (paddingType) {
+            paddingType.forEach(element => {
+                element.classList.add(element.dataset.paddingtype);
+            });
         }
     }
 
@@ -44,6 +66,9 @@ export default class Wsm_hierarchy_list extends LightningElement {
         if (this.settingsJSON && this.settingsJSON !== '') {
             this.settings.otherSettings = JSON.parse(this.settingsJSON);
             this.settings.hasOtherSettings = true;
+            // set padding type and dark mode modifiers
+            if (this.settings.otherSettings.darkMode !== undefined && this.settings.otherSettings.darkMode !== null) {this.isDarkMode = this.settings.otherSettings.darkMode;}
+            if (this.settings.otherSettings.paddingType !== undefined && this.settings.otherSettings.paddingType !== null) {this.paddingType = this.settings.otherSettings.paddingType;}
         }
         console.log('Seetings Parsed: ',JSON.stringify(this.settings));
     }

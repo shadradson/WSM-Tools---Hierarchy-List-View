@@ -1,6 +1,27 @@
+.darkmode {
+    --slds-g-color-neutral-base-30: #fff;
+    --lwc-colorTextLabel: #fff;
+    --slds-g-color-neutral-base-10: #fff;
+    --lwc-inputStaticColor: #fff;
+}
+.compact .slds-form-element__label {
+    --lwc-spacingXSmall: 0rem;
+    --lwc-spacingXxSmall: 0rem;
+}
+
 .card-outer {
     border-radius: 0.5rem;
     background: #eee;
+}
+.card-outer.darkmode {
+    border-radius: 0.5rem;
+    background: #222222;
+}
+.card-outer.comfy {
+    border-radius: 1rem;
+}
+.card-outer.compact {
+    border-radius: 0.2rem;
 }
 
 .hierarchy-card {
@@ -17,9 +38,24 @@
     border-radius: 0.5rem;
     transition: 0.2s;
 }
+.card-header.darkmode {
+    color: #fff;
+}
+.card-header.comfy {
+    padding: 1rem;
+    gap: 1.5rem;
+    border-radius: 1rem;
+}
+.card-header.compact {
+    gap: 0.75rem;
+    border-radius: 0.25rem;
+}
 
 .card-header:hover {
     background-color: #ffffffaa;
+}
+.card-header.darkmode:hover {
+    background-color: #ffffff22;
 }
 
 .expand-button {
@@ -38,6 +74,11 @@
     gap: 0.25rem;
     padding: 0.1rem 1rem;
     border-radius: 1rem;
+}
+.field-item.compact {
+    gap: 0.2rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 0.2rem;
 }
 
 .field-label {
@@ -58,9 +99,13 @@
     font-size: 11px;
     font-weight: 300;
 }
+
 /*---------- Children ----------*/
 .children-container-outer {
     padding: 0.5rem;
+}
+.children-container-outer.compact {
+    padding: 0.25rem;
 }
 .children-container {
     border-radius: 1rem;
@@ -70,6 +115,9 @@
     gap: 0.5rem;
     flex-wrap: wrap;
 }
+.children-container.darkmode { background-color: #111111;}
+.children-container.comfy { padding: 1rem; gap: 1rem; border-radius: 2rem;}
+.children-container.compact { padding: 0.2rem; gap: 0.2rem; border-radius: 0.2rem;}
 
 c-wsm_hierarchy_list_child {
     flex-grow: 1;

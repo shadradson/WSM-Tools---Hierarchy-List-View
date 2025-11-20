@@ -57,6 +57,8 @@ The `settingsJSON` parameter accepts a JSON string with advanced configuration o
 
 ```json string. This is best made as a text template in the flow. Make sure it is plain text.
 {
+  "paddingType": "comfy",
+  "darkMode": false,
   "hasColoredFields": false,
   "hasColoredRecords": true,
   "fieldSettings": [
@@ -81,6 +83,7 @@ The `settingsJSON` parameter accepts a JSON string with advanced configuration o
 
 #### Top Level
 
+- **paddingLevel** (string) - Enter "comfy", "standard" or "compact" for different levels of padding
 - **hasColoredFields** (boolean) - Enable field-level color coding
 - **hasColoredRecords** (boolean) - Enable record-level color coding
 - **fieldSettings** (array) - Array of field-specific configuration objects

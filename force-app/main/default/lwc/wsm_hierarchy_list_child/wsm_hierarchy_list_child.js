@@ -14,7 +14,15 @@ export default class Wsm_hierarchy_list_child extends NavigationMixin(LightningE
     isFieldColorBasedOnField = false;
     recordColorBasedOnField = null;
 
+    paddingType = 'comfy';
+    isDarkMode = false;
+
     connectedCallback() {
+        console.log('Settings INC: ',JSON.stringify(this.incSettings));
+        // set padding type and dark mode modifiers
+        if (this.incSettings.otherSettings.darkMode !== undefined && this.incSettings.otherSettings.darkMode !== null) {this.isDarkMode = this.incSettings.otherSettings.darkMode;}
+        if (this.incSettings.otherSettings.paddingType !== undefined && this.incSettings.otherSettings.paddingType !== null) { console.log('Setting mode of padding to: ', this.incSettings.otherSettings.paddingType); this.paddingType = this.incSettings.otherSettings.paddingType;}
+
         this.title = this.getFieldValue(this.incSettings.titleField);
         if (this.incSettings.hasSubtitle) {
             this.subTitle = this.getFieldValue(this.incSettings.subTitleField);
@@ -73,6 +81,7 @@ export default class Wsm_hierarchy_list_child extends NavigationMixin(LightningE
     }
 
     renderedCallback() {
+        this.darkModeAndPaddingApply();
         if (this.incSettings.otherSettings.hasColoredFields && this.isFieldColorBasedOnField) { this.fieldColors(); };
         if (this.incSettings.otherSettings.hasColoredRecords && this.isRecordColorBasedOnField) { this.recordColors(); };
     }
@@ -93,6 +102,24 @@ export default class Wsm_hierarchy_list_child extends NavigationMixin(LightningE
         recordsWithColor.forEach(record => {
             record.style.backgroundColor = record.dataset.recordcolor;
         });
+    }
+
+    darkModeAndPaddingApply() {
+        console.log('Padding and Dark Mode Apply Function: ',);
+        let darkMode = this.template.querySelectorAll('[data-darkmode]');
+        let paddingType = this.template.querySelectorAll('[data-paddingtype]');
+        console.log('Dark Mode and Padding type elements: ',JSON.stringify(darkMode), "\n", JSON.stringify(paddingType));
+        if (darkMode && this.incSettings?.otherSettings.darkMode) {
+            darkMode.forEach(element => {
+                element.classList.add('darkmode');
+            });
+        }
+        if (paddingType) {
+            paddingType.forEach(element => {
+                console.log('Applying padding type class: ',JSON.stringify(element.dataset));
+                element.classList.add(element.dataset.paddingtype);
+            });
+        }
     }
 
     get hasChildren() {

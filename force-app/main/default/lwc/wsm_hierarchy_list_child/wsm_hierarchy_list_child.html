@@ -1,16 +1,16 @@
 <template>
-    <div class="card-outer" data-recordcolor={recordColorBasedOnField} role="treeitem" aria-label={ariaLabel} aria-expanded={ariaExpanded} tabindex="0" onkeydown={handleKeyDown}>
+    <div class="card-outer" data-recordcolor={recordColorBasedOnField} role="treeitem" aria-label={ariaLabel} aria-expanded={ariaExpanded} tabindex="0" onkeydown={handleKeyDown}  data-darkmode={isDarkMode} data-paddingtype={paddingType}>
 
-        <div class="card-header" onclick={handleRecordClick} role="button" aria-label="View record details">
+        <div class="card-header" onclick={handleRecordClick} role="button" aria-label="View record details"  data-darkmode={isDarkMode} data-paddingtype={paddingType}>
 
             <div class="field-container">
-                <div class="title-container">
-                    <div class="title">{title}</div>
-                    <div lwc:if={incSettings.hasSubtitle} class="sub-title">{subTitle}</div>
+                <div class="title-container"  data-darkmode={isDarkMode} data-paddingtype={paddingType}>
+                    <div class="title"  data-darkmode={isDarkMode}>{title}</div>
+                    <div lwc:if={incSettings.hasSubtitle} data-darkmode={isDarkMode} class="sub-title">{subTitle}</div>
                 </div>
                 <lightning-record-view-form object-api-name={incSettings.objectApiName} record-id={incRecord.Id}>
                     <template for:each={otherFieldsCompiled} for:item="field">
-                        <div data-fieldcolor={field.datacolor} key={field.fieldAPIName} class="field-item">
+                        <div data-fieldcolor={field.datacolor} key={field.fieldAPIName} class="field-item"  data-darkmode={isDarkMode} data-paddingtype={paddingType}>
                             <lightning-output-field variant={field.variant} field-name={field.fieldAPIName} value={field.value}> </lightning-output-field>
                         </div>
                     </template>
@@ -26,8 +26,8 @@
 
         <template if:true={isExpanded}>
             <template if:true={hasChildren}>
-                <div class="children-container-outer">
-                    <div class="children-container" role="group">
+                <div class="children-container-outer" data-darkmode={isDarkMode} data-paddingtype={paddingType}>
+                    <div class="children-container" role="group"  data-darkmode={isDarkMode} data-paddingtype={paddingType}>
                         <template for:each={incRecord.children} for:item="child">
                             <c-wsm_hierarchy_list_child key={child.Id} inc-record={child} inc-settings={childSettings}>
                             </c-wsm_hierarchy_list_child>
